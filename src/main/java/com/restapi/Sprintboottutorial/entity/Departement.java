@@ -6,8 +6,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Departement {
 
     @Id
@@ -20,7 +28,7 @@ public class Departement {
     private String departementAddress;
     private String departementCode;
 
-    public Departement(Long departementId, String departmentName, String departementAddress, String departmentCode) {
+    /*public Departement(Long departementId, String departmentName, String departementAddress, String departmentCode) {
         this.departementId = departementId;
         this.departmentName = departmentName;
         this.departementAddress = departementAddress;
@@ -58,7 +66,7 @@ public class Departement {
 
     public void setDepartmentCode(String departmentCode) {
         this.departementCode = departmentCode;
-    }
+    }*/
 
     @Override
     public String toString() {

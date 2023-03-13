@@ -1,12 +1,14 @@
 package com.restapi.Sprintboottutorial.service;
 
 import com.restapi.Sprintboottutorial.entity.Departement;
+import com.restapi.Sprintboottutorial.exception.DepartmentNotFoundException;
 import com.restapi.Sprintboottutorial.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class DepartmentServiceImpl implements DepartmentService{
@@ -24,8 +26,14 @@ public class DepartmentServiceImpl implements DepartmentService{
     }
 
     @Override
-    public Departement fecthDepartmentById(Long departmentId) {
-        return departmentRepository.findById(departmentId).get();
+    public Departement fecthDepartmentById(Long departmentId) throws DepartmentNotFoundException {
+        Optional<Departement> departement = departmentRepository.findById(departmentId);
+
+        if(!departement.isPresent()){
+            throw new DepartmentNotFoundException("Department Not Found !");
+        }
+
+        return departement.get();
     }
 
     @Override
@@ -42,7 +50,7 @@ public class DepartmentServiceImpl implements DepartmentService{
         }
 
         if(Objects.nonNull(departement.getDepartementCode()) && !"".equalsIgnoreCase(departement.getDepartementCode())){
-            departementDB.setDepartmentCode(departement.getDepartementCode());
+            departementDB.setDepartementCode(departement.getDepartementCode());
         }
 
         if(Objects.nonNull(departement.getDepartementAddress()) && !"".equalsIgnoreCase(departement.getDepartementAddress())){

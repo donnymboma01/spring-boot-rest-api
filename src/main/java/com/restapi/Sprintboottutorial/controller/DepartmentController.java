@@ -1,6 +1,7 @@
 package com.restapi.Sprintboottutorial.controller;
 
 import com.restapi.Sprintboottutorial.entity.Departement;
+import com.restapi.Sprintboottutorial.exception.DepartmentNotFoundException;
 import com.restapi.Sprintboottutorial.service.DepartmentService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -32,7 +33,7 @@ public class DepartmentController {
     }
 
     @GetMapping("/departments/{id}")
-    public Departement fetchDepartementById(@PathVariable("id") Long departmentId){
+    public Departement fetchDepartementById(@PathVariable("id") Long departmentId) throws DepartmentNotFoundException {
         LOGGER.info("Inside the get a single department request of the controller");
         return departmentService.fecthDepartmentById(departmentId);
     }
