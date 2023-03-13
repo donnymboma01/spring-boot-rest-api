@@ -15,7 +15,7 @@ public class Departement {
     private Long departementId;
 
     @NotBlank(message = "Please add department name")
-    @NotNull(message = "This value cannot be null")
+    @NotNull
     private String departmentName;
     private String departementAddress;
     private String departementCode;
